@@ -19,7 +19,7 @@
     <ProjectReference Include="..\..\game\game.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Logger.xml">
+    <None Update="authserver.logger.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="authserver.conf.dist">

@@ -15,10 +15,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
 
@@ -180,9 +177,11 @@ internal sealed class LoggerSettings : IDisposable
         try
         {
             string? workDir = Assembly.GetExecutingAssembly().Location;
+            Assembly? entryAssembly = Assembly.GetEntryAssembly();
+            string? entryName = entryAssembly?.GetName().Name;
             string fullPath = string.Empty;
-            FileInfo fi = new FileInfo(workDir);
-            string confFileName = "Logger.xml";
+            FileInfo fi = new (workDir);
+            string confFileName = $"{entryName}.logger.xml";
 
             workDir = fi.Directory?.FullName;
             fullPath = Path.Combine(workDir ?? "", confFileName);

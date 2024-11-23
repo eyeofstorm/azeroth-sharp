@@ -55,9 +55,7 @@ public static class MathFunctions
 
     public static void Swap<T>(ref T lhs, ref T rhs)
     {
-        T temp = lhs;
-        lhs = rhs;
-        rhs = temp;
+        (rhs, lhs) = (lhs, rhs);
     }
 
     #region Clamp
@@ -91,16 +89,17 @@ public static class MathFunctions
     }
     #endregion
 
-    static double eps(float a, float b)
+    static double Eps(float a, float b)
     {
         float aa = Math.Abs(a) + 1.0f;
+
         if (float.IsPositiveInfinity(aa))
             return 0.0000005f;
 
         return 0.0000005f * aa;
     }
 
-    public static float lerp(float a, float b, float f)
+    public static float Lerp(float a, float b, float f)
     {
         return a + (b - a) * f;
     }
@@ -111,34 +110,34 @@ public static class MathFunctions
     }
 
     #region Fuzzy
-    public static bool fuzzyEq(float a, float b)
+    public static bool FuzzyEq(float a, float b)
     {
-        return (a == b) || (Math.Abs(a - b) <= eps(a, b));
+        return (a == b) || (Math.Abs(a - b) <= Eps(a, b));
     }
 
-    public static bool fuzzyGt(float a, float b)
+    public static bool FuzzyGt(float a, float b)
     {
-        return a > b + eps(a, b);
+        return a > b + Eps(a, b);
     }
 
-    public static bool fuzzyLt(float a, float b)
+    public static bool FuzzyLt(float a, float b)
     {
-        return a < b - eps(a, b);
+        return a < b - Eps(a, b);
     }
 
-    public static bool fuzzyNe(float a, float b)
+    public static bool FuzzyNe(float a, float b)
     {
-        return !fuzzyEq(a, b);
+        return !FuzzyEq(a, b);
     }
 
-    public static bool fuzzyLe(float a, float b)
+    public static bool FuzzyLe(float a, float b)
     {
-        return a < b + eps(a, b);
+        return a < b + Eps(a, b);
     }
 
-    public static bool fuzzyGe(float a, float b)
+    public static bool FuzzyGe(float a, float b)
     {
-        return a > b - eps(a, b);
+        return a > b - Eps(a, b);
     }
     #endregion
 
@@ -166,10 +165,12 @@ public static class MathFunctions
     {
         return value += CalculatePct(value, pct);
     }
+
     public static uint AddPct(ref uint value, float pct)
     {
         return value += CalculatePct(value, pct);
     }
+
     public static float AddPct(ref float value, float pct)
     {
         return value += CalculatePct(value, pct);
@@ -241,8 +242,8 @@ public static class MathFunctions
                 // incorrect parameter
                 return false;
         }
-
     }
+
     public static bool CompareValues(ComparisionType type, float val1, float val2)
     {
         switch (type)
@@ -338,8 +339,7 @@ public static class MathFunctions
 
     public static Matrix4x4 Inverse(this Matrix4x4 elt)
     {
-        Matrix4x4 kInverse;
-        elt.Inverse(out kInverse);
+        elt.Inverse(out Matrix4x4 kInverse);
         return kInverse;
     }
 

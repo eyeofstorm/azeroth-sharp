@@ -21,7 +21,7 @@
     <None Update="authserver.conf.dist">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Logger.xml">
+    <None Update="worldserver.logger.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="worldserver.conf.dist">

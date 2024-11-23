@@ -1102,8 +1102,6 @@ public class ObjectMgr : Singleton<ObjectMgr>
         }
         while (result.NextRow());
 
-
-
         // TODO: game: ObjectMgr::LoadItemTemplates()
 
         logger.Info(LogFilter.ServerLoading, $">> Loaded {count} Item Templates in {TimeHelper.GetMSTimeDiffToNow(oldMSTime)} ms");
